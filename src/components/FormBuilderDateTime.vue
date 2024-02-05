@@ -43,7 +43,7 @@
                       @update:model-value="change($event)">
                 <div class="row items-center justify-end">
                   <q-btn v-close-popup
-                         label="بستن"
+                         label="Close"
                          color="primary"
                          flat />
                 </div>
@@ -84,7 +84,7 @@
                     :class="customClass">
               <div class="row items-center justify-end">
                 <q-btn v-close-popup
-                       label="بستن"
+                       label="Close"
                        color="primary"
                        flat />
               </div>
@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import moment from 'moment-jalaali'
+import moment from 'moment'
 import inputMixin from '../mixins/inputMixin.js'
 // NOTE: Value accepted from this component is based on Miladi format
 // you should pass to it Miladi date as string
@@ -117,7 +117,7 @@ export default {
       type: String
     },
     calendar: {
-      default: 'persian',
+      default: 'en',
       type: String
     },
     calendarIcon: {

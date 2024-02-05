@@ -394,7 +394,7 @@ export default {
           name: 'creation_time',
           placeholder: ' creation time ',
           label: 'date & time with label & placeholder',
-          calendar: 'persian',
+          calendar: 'en',
           col: 'col-md-6',
           value: ''
         },
@@ -403,7 +403,7 @@ export default {
           name: 'creation_time',
           placeholder: ' ',
           label: 'date & time with label & placeholder(space)',
-          calendar: 'persian',
+          calendar: 'en',
           col: 'col-md-6',
           value: ''
         },
@@ -411,7 +411,7 @@ export default {
           type: 'date',
           name: 'last_modification_time',
           label: 'required date with label',
-          calendar: 'persian',
+          calendar: 'en',
           col: 'col-md-6',
           rules: [(val) => !!val || 'field is required']
           // lazyRules: true,
@@ -420,7 +420,7 @@ export default {
           type: 'dateTime',
           name: 'creation_time',
           label: 'date & time',
-          calendar: 'persian',
+          calendar: 'en',
           col: 'col-md-6',
           todayBtn: true,
           nowBtn: true,
@@ -435,7 +435,7 @@ export default {
           multiple: false,
           responseKey: 'test2',
           outlined: true,
-          calendar: 'persian',
+          calendar: 'en',
           col: 'col-md-6',
           placeholder: 'Enter',
           nowBtn: true
@@ -449,7 +449,7 @@ export default {
           multiple: false,
           responseKey: 'test2',
           outlined: true,
-          calendar: 'persian',
+          calendar: 'en',
           col: 'col-md-6',
           nowBtn: true
         },
@@ -462,7 +462,7 @@ export default {
           multiple: false,
           responseKey: 'test2',
           outlined: true,
-          calendar: 'persian',
+          calendar: 'en',
           placeholder: ' ',
           col: 'col-md-6'
         },
@@ -539,7 +539,7 @@ export default {
             floatingMenu: false,
             poem: false,
             reading: false,
-            persianKeyboard: true,
+            enKeyboard: true,
             mathliveOptions: { smartFence: false },
             uploadServer: {
               url: 'imageUrl',

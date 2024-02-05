@@ -123,7 +123,7 @@ export default {
       | props    | default | type          |
       | -------- | :-----: | :------------ |
       | value    |   ' '   | Object, Array |
-      | calendar | persian | String        |
+      | calendar | en | String        |
       | multiple |  false  | Boolean       |
       | disable  |  false  | Boolean       |
 
@@ -139,7 +139,7 @@ export default {
       | props    | default | type          |
       | -------- | :-----: | :------------ |
       | value    |   ' '   | Object, Array |
-      | calendar | persian | String        |
+      | calendar | en | String        |
       | multiple |  false  | Boolean       |
       | disable  |  false  | Boolean       |
 
@@ -148,7 +148,7 @@ export default {
       | props    | default | type          |
       | -------- | :-----: | :------------ |
       | value    |   ' '   | Object, Array |
-      | calendar | persian | String        |
+      | calendar | en | String        |
       | multiple |  false  | Boolean       |
       | disable  |  false  | Boolean       |
       | range    |  true   | Boolean       |
@@ -158,7 +158,7 @@ export default {
       | props    | default | type          |
       | -------- | :-----: | :------------ |
       | value    |   ' '   | Object, Array |
-      | calendar | persian | String        |
+      | calendar | en | String        |
       | multiple |  true   | Boolean       |
       | disable  |  false  | Boolean       |
       | range    |  true   | Boolean       |
