@@ -239,9 +239,6 @@ export default {
     formatTime(time) {
       return moment(time, 'HH:mm').format('HH:mm:00')
     },
-    getShamsiTime(time) {
-      return moment(time, 'HH:mm:ss').format('HH:mm')
-    },
     getTime(time) {
       return moment(time, 'HH:mm').format('HH:mm:00')
     }
