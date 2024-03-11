@@ -41,7 +41,7 @@
               @click="onClick">
       <template #no-option>
         <q-item v-show="showNoOption">
-          <q-item-section class="text-grey"> موردی یافت نشد </q-item-section>
+          <q-item-section class="text-grey"> Empty </q-item-section>
         </q-item>
       </template>
     </q-select>

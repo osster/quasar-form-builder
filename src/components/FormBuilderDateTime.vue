@@ -101,13 +101,6 @@
 <script>
 import moment from 'moment'
 import inputMixin from '../mixins/inputMixin.js'
-// NOTE: Value accepted from this component is based on Miladi format
-// you should pass to it Miladi date as string
-// output of this component (which name is 'value') is based on Miladi format.
-// SO:
-// INPUT: MILADI (STRING)
-// SHOWING IN CALENDAR: JALALI (STRING)
-// OUTPUT: MILADI (STRING)
 export default {
   name: 'FormBuilderDateTime',
   mixins: [inputMixin],
@@ -168,14 +161,14 @@ export default {
       handler(newValue) {
         const newDate = newValue.date
         const newTime = newValue.time
-        if (this.type === 'dateTime' && this.isValidShamsiDate(newDate) && this.isValidShamsiTime(newTime)) {
-          this.inputData = this.shamsiToMiladiDate(newDate) + ' ' + this.getMiladiTime(newTime)
+        if (this.type === 'dateTime' && this.isValidDate(newDate) && this.isValidTime(newTime)) {
+          this.inputData = newDate + ' ' + newTime
           this.change(this.inputData)
-        } else if (this.type === 'date' && this.isValidShamsiDate(newDate)) {
-          this.inputData = this.shamsiToMiladiDate(newDate)
+        } else if (this.type === 'date' && this.isValidDate(newDate)) {
+          this.inputData = newDate
           this.change(this.inputData)
-        } else if (this.type === 'time' && this.isValidShamsiTime(newTime)) {
-          this.inputData = this.formatTime(newTime)
+        } else if (this.type === 'time' && this.isValidTime(newTime)) {
+          this.inputData = newTime
           this.change(this.inputData)
         }
       },
@@ -187,62 +180,52 @@ export default {
   },
   methods: {
     getNormalizedTimeString (dateObject) {
-      const newMiladiDateObject = new Date(dateObject)
-      return newMiladiDateObject.getHours().toString().padStart(2, '0') + ':' + newMiladiDateObject.getMinutes().toString().padStart(2, '0') + ':' + newMiladiDateObject.getSeconds().toString().padStart(2, '0')
+      const newDateObject = new Date(dateObject)
+      return newDateObject.getHours().toString().padStart(2, '0') + ':' + newDateObject.getMinutes().toString().padStart(2, '0') + ':' + newDateObject.getSeconds().toString().padStart(2, '0')
     },
     getNormalizedDateString (dateObject) {
-      const newMiladiDateObject = new Date(dateObject)
-      return newMiladiDateObject.getFullYear().toString().padStart(4, '0') + '-' + (newMiladiDateObject.getMonth() + 1).toString().padStart(2, '0') + '-' + newMiladiDateObject.getDate().toString().padStart(2, '0')
+      const newDateObject = new Date(dateObject)
+      return newDateObject.getFullYear().toString().padStart(4, '0') + '-' + (newDateObject.getMonth() + 1).toString().padStart(2, '0') + '-' + newDateObject.getDate().toString().padStart(2, '0')
     },
-    updateDateTime(newMiladi) {
+    updateDateTime(newDate) {
       this.dateTime = {
         date: '',
         time: ''
       }
 
-      if (!newMiladi) {
+      if (!newDate) {
         return
       }
 
-      const newMiladiDateObject = new Date(newMiladi)
+      const newDateObject = new Date(newDate)
 
       if (this.type === 'dateTime') {
-        const miladiData = this.getNormalizedDateString(newMiladiDateObject)
-        const time = this.getNormalizedTimeString(newMiladiDateObject)
-        if (!this.isValidMiladiDate(miladiData) || !this.isValidMiladiTime(time)) {
+        const dateData = this.getNormalizedDateString(newDateObject)
+        const time = this.getNormalizedTimeString(newDateObject)
+        if (!this.isValidDate(dateData) || !this.isValidTime(time)) {
           return
         }
-        this.dateTime.date = this.miladiToShamsiDate(miladiData)
-        this.dateTime.time = this.getShamsiTime(time)
+        this.dateTime.date = dateData
+        this.dateTime.time = time
       } else if (this.type === 'time') {
-        if (!this.isValidMiladiTime(newMiladi)) {
+        if (!this.isValidTime(newDate)) {
           return
         }
-        this.dateTime.time = newMiladi
+        this.dateTime.time = newDate
       } else if (this.type === 'date') {
-        if (!this.isValidMiladiDate(newMiladi)) {
+        if (!this.isValidDate(newDate)) {
           return
         }
-        this.dateTime.date = this.miladiToShamsiDate(newMiladi)
+        this.dateTime.date = newDate
       }
 
       this.rendrKey = Date.now()
     },
-    isValidMiladiDate(miladiDate) {
-      // const miladiYear = Number(miladiDate.split(' ')[0].split('-')[0])
-      // return miladiDate !== '' && !isNaN(miladiYear) && miladiYear > 1900
-      return (/[1,2][0,9][0-9][0-9]-[0,1]{0,1}[0-9]-[0-3]{0,1}[0-9]/gm).test(miladiDate)
+    isValidDate(dateDate) {
+      return (/[1,2][0,9][0-9][0-9]-[0,1]{0,1}[0-9]-[0-3]{0,1}[0-9]/gm).test(dateDate)
     },
-    isValidShamsiDate(shamsiDate) {
-      // const shamsiYear = Number(shamsiDate.split(' ')[0].split('/')[0])
-      // return shamsiDate !== '' && !isNaN(shamsiYear) && shamsiYear > 1300 && shamsiYear < 2000
-      return (/1[3,4][0-9][0-9]\/[0,1]{0,1}[0-9]\/[0-3]{0,1}[0-9]/gm).test(shamsiDate)
-    },
-    isValidMiladiTime(time) {
+    isValidTime(time) {
       return (/[0,1,2]{0,1}[0-9]:[0-5]{0,1}[0-9]:[0-5]{0,1}[0-9]/gm).test(time)
-    },
-    isValidShamsiTime(time) {
-      return (/[0,1,2]{0,1}[0-9]:[0-5]{0,1}[0-9]/gm).test(time)
     },
     showDateMenu() {
       this.showDate = true
@@ -253,19 +236,13 @@ export default {
     show(t) {
       return this.type === 'dateTime' || this.type === t
     },
-    shamsiToMiladiDate(date) {
-      return moment(date, 'jYYYY/jMM/jDD').format('YYYY-MM-DD')
-    },
-    miladiToShamsiDate(date) {
-      return moment(date, 'YYYY-MM-DD').format('jYYYY/jMM/jDD')
-    },
     formatTime(time) {
       return moment(time, 'HH:mm').format('HH:mm:00')
     },
     getShamsiTime(time) {
       return moment(time, 'HH:mm:ss').format('HH:mm')
     },
-    getMiladiTime(time) {
+    getTime(time) {
       return moment(time, 'HH:mm').format('HH:mm:00')
     }
   }
