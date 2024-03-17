@@ -29,7 +29,7 @@
                   :stack="stack"
                   :stretch="stretch"
                   :class="{customClass, col}"
-                  @update:model-value="change($event)"
+                  @update:model-value="(e) => change(e)"
                   @click="onClick" />
   </div>
 </template>

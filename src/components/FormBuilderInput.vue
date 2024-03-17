@@ -20,7 +20,7 @@
              :class="customClass"
              :input-class="customClass"
              :autogrow="autogrow"
-             @update:model-value="change($event)"
+             @update:model-value="(e) => change(e)"
              @click="onClick"
              @keypress="onKeyPress" />
   </div>

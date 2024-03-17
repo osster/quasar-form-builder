@@ -79,7 +79,7 @@
                 times_new_roman: 'Times New Roman',
                 verdana: 'Verdana',
               }"
-              @update:model-value="change($event)"
+              @update:model-value="(e) => change(e)"
               @click="onClick" />
     <!--eslint-disable-next-line-->
     <div v-else v-html="inputData" />

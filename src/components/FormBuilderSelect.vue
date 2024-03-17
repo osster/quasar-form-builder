@@ -35,7 +35,7 @@
               :dropdown-icon="dropdownIcon"
               map-options
               :clearable="clearable"
-              @update:model-value="change($event)"
+              @update:model-value="(e) => change(e)"
               @new-value="createValue"
               @filter="filterFn"
               @click="onClick">
@@ -74,7 +74,7 @@ export default {
       default: undefined,
       type: String,
       validator(value) {
-        return ['add' | 'add-unique' | 'toggle' | undefined].includes(value)
+        return ['add', 'add-unique', 'toggle', undefined].includes(value)
       }
     },
     clearable: {

@@ -94,11 +94,6 @@
               options for label. try to remove placeholder to see.
             </li>
             <li>
-              For <b>dateTime picker</b>, note that
-              <b>user will always see shamsi date</b>, but the end result (
-              which stored in <b>value</b> ) will be in <b>miladi</b> .
-            </li>
-            <li>
               Also note that in <b>dateTime picker</b> the final date will be in
               format of
               <b>"YYYY-MM-DD HH:mm:00"</b>

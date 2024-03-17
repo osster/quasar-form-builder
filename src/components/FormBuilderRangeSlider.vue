@@ -2,8 +2,7 @@
   <div class="form-builder-rangeSlider"
        :class="customClass">
     <q-badge color="secondary">
-      {{ label }}: از {{ inputData.min }} تا {{ inputData.max }} ({{ min }} تا
-      {{ max }})
+      {{ label }}: {{ inputData.min }} - {{ inputData.max }} ({{ min }} - {{ max }})
     </q-badge>
     <q-range v-model="inputData"
              :name="name"
@@ -13,7 +12,7 @@
              :readonly="readonly"
              :class="customClass"
              :marker-labels-class="customClass"
-             @update:model-value="change($event)"
+             @update:model-value="(e) => change(e)"
              @click="onClick" />
   </div>
 </template>

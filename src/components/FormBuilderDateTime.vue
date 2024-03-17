@@ -33,14 +33,14 @@
                     :class="customClass">
               <q-date v-model="dateTime.date"
                       :calendar="calendar"
-                      mask="YYYY/MM/DD"
+                      mask="YYYY-MM-DD"
                       :range="range"
                       :multiple="multiple"
                       :disable="disable"
                       :title="title ? title : label"
                       :today-btn="todayBtn"
                       :class="customClass"
-                      @update:model-value="change($event)">
+                      @update:model-value="onChange">
                 <div class="row items-center justify-end">
                   <q-btn v-close-popup
                          label="Close"
@@ -110,7 +110,7 @@ export default {
       type: String
     },
     calendar: {
-      default: 'en',
+      default: 'gregorian',
       type: String
     },
     calendarIcon: {
@@ -131,7 +131,7 @@ export default {
     },
     value: {
       default: '',
-      type: String
+      type: [String, Object]
     },
     nowBtn: {
       default: false,
@@ -241,6 +241,10 @@ export default {
     },
     getTime(time) {
       return moment(time, 'HH:mm').format('HH:mm:00')
+    },
+    onChange(e) {
+      this.showDate = false
+      this.change(e)
     }
   }
 }

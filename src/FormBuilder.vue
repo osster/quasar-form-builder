@@ -31,11 +31,11 @@
                  :loading="loading"
                  v-bind="input"
                  @update:value="onValueUpdated"
-                 @input="change($event, inputIndex)"
-                 @change="change($event, inputIndex)"
-                 @onClick="onClick($event, input)"
-                 @onInputClick="onInputClick($event)"
-                 @onKeyPress="onKeyPress($event)">
+                 @input="(e) => change(e, inputIndex)"
+                 @change="(e) => change(e, inputIndex)"
+                 @onClick="(e) => onClick(e, input)"
+                 @onInputClick="(e) => onInputClick(e)"
+                 @onKeyPress="(e) => onKeyPress(e)">
         <!--        <template v-for="(_, name) in $slots" #[name]="slotProps">-->
         <template v-for="name in getComponentSlots(input)"
                   #[name]="slotProps">

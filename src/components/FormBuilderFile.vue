@@ -20,7 +20,7 @@
             :lazy-rules="lazyRules"
             :class="customClass"
             :input-class="customClass"
-            @update:model-value="change($event)"
+            @update:model-value="(e) => change(e)"
 
             @clear="onClearInputFile"
             @click="onClick" />

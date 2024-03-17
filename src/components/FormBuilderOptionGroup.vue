@@ -14,7 +14,7 @@
                     :type="typeOfInput"
                     :disable="disable || readonly"
                     :class="customClass"
-                    @update:model-value="change($event)"
+                    @update:model-value="(e) => change(e)"
                     @click="onClick">
       <template v-slot:label="opt">
         <q-icon v-if="opt.icon"

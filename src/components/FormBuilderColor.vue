@@ -26,7 +26,7 @@
                      flat
                      default-value="#4b9c70ff"
                      :palette="palette"
-                     @update:model-value="change($event)"
+                     @update:model-value="(e) => change(e)"
                      @click="onClick" />
           </q-menu>
         </q-icon>
